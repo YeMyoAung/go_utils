@@ -1,19 +1,29 @@
 package map_utils
 
-import "fmt"
-
-// Map applies the given function to each item in the input slice and returns a
-// new slice with the results.
+// Keys returns a slice of all the keys in the given map.
 //
-// data []T, fn func(T) R
-// []R, error
-func Map[T any, R any](data []T, fn func(T) R) ([]R, error) {
-	if len(data) == 0 {
-		return nil, fmt.Errorf("cannot map nil or empty array")
+// source map[K]V
+// []K
+func Keys[K comparable, V any](source map[K]V) []K {
+	values := make([]K, 0, len(source))
+
+	for key := range source {
+		values = append(values, key)
 	}
-	newData := make([]R, len(data))
-	for i, v := range data {
-		newData[i] = fn(v)
+
+	return values
+}
+
+// Values returns a slice of all the values in the given map.
+//
+// source map[K]V
+// []V
+func Values[K comparable, V any](source map[K]V) []V {
+	values := make([]V, 0, len(source))
+
+	for _, value := range source {
+		values = append(values, value)
 	}
-	return newData, nil
+
+	return values
 }

@@ -1,19 +1,26 @@
 package test
 
 import (
-	"log"
 	"testing"
 
 	map_utils "github.com/YeMyoAung/go_utils/utils/map"
 )
 
 func TestMap(t *testing.T) {
-	t.Run("map test", func(t *testing.T) {
-		data := []int{1, 2, 3, 4}
-		newData, _ := map_utils.Map(data, func(i int) int {
-			return i + 1
-		})
-		log.Println(newData)
+	data := map[string]int{
+		"a": 1,
+		"b": 2,
+	}
+
+	t.Run("keys test", func(t *testing.T) {
+		if len(data) != len(map_utils.Keys(data)) {
+			t.Fail()
+		}
+	})
+	t.Run("values test", func(t *testing.T) {
+		if len(data) != len(map_utils.Values(data)) {
+			t.Fail()
+		}
 	})
 
 }
