@@ -1,4 +1,4 @@
-package utils
+package string_utils
 
 import (
 	"regexp"
